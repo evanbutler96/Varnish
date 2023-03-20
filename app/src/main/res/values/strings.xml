@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">database</string>
+    <string name="no_project_description">No current projects</string>
+    <string name="project">Enter a Project name</string>
+    <string name="hello_world">Hello World</string>
+    <string name="ProjectPage">Projects</string>
+    <string name="EnterStage">Enter a Project Stage</string>
+    <string name="favorite">Favorite?</string>
+    <string name="save">Save</string>
+    <string name="home">Home Page</string>
+    <string name="stage">Stage: </string>
+    <string name="delete">Delete Project</string>
+    <string name="notes">Notes:</string>
+    <string name="new_notes">Enter in notes about the project</string>
+</resources>
