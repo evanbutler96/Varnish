@@ -12,4 +12,5 @@
     <string name="delete">Delete Project</string>
     <string name="notes">Notes:</string>
     <string name="new_notes">Enter in notes about the project</string>
+    <string name="isFavorite">Favorite!</string>
 </resources>

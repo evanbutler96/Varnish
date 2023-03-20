@@ -326,7 +326,18 @@ fun ProjectViewPage(
 
                 }
             }
-
+            Row(modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround)
+            {
+                if (singleProject.projectFavorite == 1) {
+                    Text(text = (stringResource(R.string.isFavorite)),
+                        style = MaterialTheme.typography.body1.copy(
+                            fontSize = 30.sp,
+                            fontWeight = FontWeight(300)))
+                }
+            }
         }
     }
 }
@@ -474,6 +485,18 @@ fun ProjectEditPage(
                 
             }
         }
+            Row(modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround)
+            {
+                if (favorite == 1) {
+                    Text(text = (stringResource(R.string.isFavorite)),
+                        style = MaterialTheme.typography.body1.copy(
+                            fontSize = 30.sp,
+                            fontWeight = FontWeight(300)))
+                }
+            }
         
         }
     }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface VarnishDao {
-    @Query("SELECT * FROM project_table")
+    @Query("SELECT * FROM project_table ORDER BY projectFavorite DESC")
     fun getAllProjects(): Flow<List<Project>>
 
     @Query("SELECT * FROM PROJECT_TABLE WHERE projectId = :projectId")
