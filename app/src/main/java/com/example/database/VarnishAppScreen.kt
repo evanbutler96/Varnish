@@ -98,6 +98,10 @@ fun VarnishMainApp(
                 val project by viewModel.getProjectName(projectName).collectAsState(emptyList())
                 ProjectViewPage(
                     project = project,
+                    deleteProject = {
+                        viewModel.delete(it)
+                        navController.navigate(mainPage)
+                    },
                     editProject = {projectName ->
                         navController.navigate(
                             "${VarnishScreens.ProjectEdit.name}/${projectName}")
@@ -118,10 +122,6 @@ fun VarnishMainApp(
                         viewModel.updateProject(it)
                         navController.navigate(mainPage)
                     },
-                    deleteProject = {
-                        viewModel.delete(it)
-                        navController.navigate(mainPage)
-                    },
                     newProject = false
                 )
             }
@@ -137,10 +137,6 @@ fun VarnishMainApp(
                     project = project,
                     updateProject = {
                         viewModel.addProject(it)
-                        navController.navigate(mainPage)
-                    },
-                    deleteProject = {
-                        viewModel.delete(it)
                         navController.navigate(mainPage)
                     },
                     newProject = true
@@ -252,7 +248,8 @@ Card(
 fun ProjectViewPage(
     modifier: Modifier = Modifier,
     project: List<Project>,
-    editProject: (String) -> Unit
+    editProject: (String) -> Unit,
+    deleteProject: (Project) -> Unit,
 ){
     LazyColumn(
         modifier = Modifier.padding(32.dp),
@@ -338,6 +335,16 @@ fun ProjectViewPage(
                             fontWeight = FontWeight(300)))
                 }
             }
+            Row(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround
+            ){
+                Button(onClick = { deleteProject(singleProject) }) { Text(text = "Delete")
+
+                }
+            }
         }
     }
 }
@@ -350,7 +357,6 @@ fun ProjectViewPage(
 fun ProjectEditPage(
     project: List<Project>,
     updateProject: (Project) -> Unit,
-    deleteProject: (Project) -> Unit,
     newProject: Boolean
 ){
     var newName = ""
@@ -469,20 +475,6 @@ fun ProjectEditPage(
             }
             ){
                 Text(stringResource(R.string.save))
-            }
-        }
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround
-        ){
-            Button(onClick = { deleteProject(Project(
-                projectId = project.projectId,
-                projectName = name,
-                projectStage = stage,
-                projectFavorite = favorite)) }) { Text(text = "Delete")
-                
             }
         }
             Row(modifier = Modifier

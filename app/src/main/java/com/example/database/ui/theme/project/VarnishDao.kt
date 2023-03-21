@@ -29,3 +29,4 @@ interface VarnishDao {
     suspend fun delete(item: Project)
 
 }
+
